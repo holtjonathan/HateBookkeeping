@@ -1,0 +1,179 @@
+{
+	"players": [
+		{
+			"id": 1,
+			"firstName": "Jonathan",
+			"lastName": "Holt",
+			"nickName": "McHolty"
+		},
+		{
+			"id": 2,
+			"firstName": "Jared",
+			"lastName": "Lee",
+			"nickName": "kikibobo"
+		},
+		{
+			"id": 3,
+			"firstName": "Thompson",
+			"lastName": "Zollars",
+			"nickName": "tzollars"
+		},
+		{
+			"id": 4,
+			"firstName": "Bob",
+			"lastName": "Hart",
+			"nickName": "bhart"
+		},
+		{
+			"id": 5,
+			"firstName": "Zak",
+			"lastName": "Wilson",
+			"nickName": "Solarphoenix"
+		},
+		{
+			"id": 6,
+			"firstName": "Corey",
+			"lastName": "Snyder",
+			"nickName": "snyd"
+		}
+	],
+	"territories": [
+		{
+			"territoryId": 1,
+			"ownerId": 3
+		},
+		{
+			"territoryId": 2,
+			"ownerId": 2
+		},
+		{
+			"territoryId": 3,
+			"ownerId": 5
+		},
+		{
+			"territoryId": 4,
+			"ownerId": null
+		},
+		{
+			"territoryId": 5,
+			"ownerId": 6
+		},
+		{
+			"territoryId": 6,
+			"ownerId": null
+		},
+		{
+			"territoryId": 7,
+			"ownerId": null
+		},
+		{
+			"territoryId": 8,
+			"ownerId": null
+		},
+		{
+			"territoryId": 9,
+			"ownerId": null
+		},
+		{
+			"territoryId": 10,
+			"ownerId": null
+		}
+	],
+	"chronicleTrack": [
+		{
+			"playerId": 1,
+			"hate": 13,
+			"resource": 11
+		},
+		{
+			"playerId": 5,
+			"hate": 21,
+			"resource": 11
+		},
+		{
+			"playerId": 3,
+			"hate": 13,
+			"resource": 5
+		},
+		{
+			"playerId": 4,
+			"hate": 9,
+			"resource": 15
+		},
+		{
+			"playerId": 6,
+			"hate": 13,
+			"resource": 11
+		},
+		{
+			"playerId": 2,
+			"hate": 19,
+			"resource": 8
+		}
+	],
+	"village": [
+		{
+			"playerId": 1,
+			"wallOfDeath": [
+				{
+					"name": "blah",
+					"tribeMemberId": 2
+				},
+				{
+					"name": "blah",
+					"tribeMemberId": 3
+				},
+				{
+					"name": "blah",
+					"tribeMemberId": 4
+				}
+			]
+		}
+	],
+	"tribeMembers": [
+		{
+			"tribeMemberId": 1,
+			"tribeMemberName": "Price"
+		},
+		{
+			"tribeMemberId": 2,
+			"tribeMemberName": "Champion"
+		},
+		{
+			"tribeMemberId": 3,
+			"tribeMemberName": "Shaman"
+		},
+		{
+			"tribeMemberId": 4,
+			"tribeMemberName": "Warrior 1"
+		},
+		{
+			"tribeMemberId": 5,
+			"tribeMemberName": "Warrior 2"
+		},
+		{
+			"tribeMemberId": 6,
+			"tribeMemberName": "Warrior 3"
+		},
+		{
+			"tribeMemberId": 7,
+			"tribeMemberName": "Warrior 4"
+		},
+		{
+			"tribeMemberId": 8,
+			"tribeMemberName": "Warrior 5"
+		},
+		{
+			"tribeMemberId": 9,
+			"tribeMemberName": "Warrior 6"
+		},
+		{
+			"tribeMemberId": 10,
+			"tribeMemberName": "Youngblood 1"
+		},
+		{
+			"tribeMemberId": 11,
+			"tribeMemberName": "Youngblood 2"
+		}
+	]
+}

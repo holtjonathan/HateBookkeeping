@@ -9,7 +9,15 @@ import Spinner from '../common/Spinner';
 import { toast } from 'react-toastify';
 
 //...props is assigning any props that haven't been manually destructured to 'props'
-function ManageChroniclePage({ chronicles, saveChronicle, players, loadChronicles, loadPlayers, history, ...props }) {
+export function ManageChroniclePage({
+	chronicles,
+	saveChronicle,
+	players,
+	loadChronicles,
+	loadPlayers,
+	history,
+	...props
+}) {
 	const [ chronicle, setChronicle ] = useState({ ...props.chronicle });
 	const [ errors, setErrors ] = useState({});
 	const [ saving, setSaving ] = useState(false);

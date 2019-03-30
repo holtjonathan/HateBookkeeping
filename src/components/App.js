@@ -7,7 +7,7 @@ import PageNotFound from './PageNotFound';
 import ChroniclesPage from './chronicles/ChroniclesPage';
 import TribesPage from './tribes/TribesPage';
 import ScenariosPage from './scenarios/ScenariosPage';
-import ManageChroniclePage from './chronicles/ManageChroniclePage';
+import ManageChroniclePage from './chronicles/ManageChroniclePage'; //eslint-disable-line import/no-named-as-default
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 

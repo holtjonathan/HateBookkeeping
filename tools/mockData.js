@@ -28,27 +28,139 @@ const newChronicle = {
 	startDate: ''
 };
 
-const scenarios = [
+const scenarioLocations = [
 	{
-		id: 1,
-		name: 'Scenario1',
-		slug: 'react-auth0-authentication-security',
-		numberOfTimesChosen: 5,
-		chosenMostOftenBy: 2
+		scenarioLocationId: 1,
+		scenarioLocationName: 'Outer Circle'
 	},
 	{
-		id: 2,
-		name: 'Scenario2',
-		slug: 'react-auth0-authentication-security',
-		numberOfTimesChosen: 2,
-		chosenMostOftenBy: 1
+		scenarioLocationId: 2,
+		scenarioLocationName: 'Inner Circle'
+	},
+	{
+		scenarioLocationId: 3,
+		scenarioLocationName: 'Capital'
+	}
+];
+
+const prereqs = [
+	{
+		prereqId: 1,
+		prereqDescription: 'The Defenders Shaman must be alive'
+	}
+];
+
+const scenarioSpecialSetups = [
+	{
+		scenarioSpecialSetupId: 1,
+		scenarioId: 1,
+		order: 1,
+		setupText: 'Place 1 Interest token and 1 Hate token on the defenders Shaman Figure card.'
+	}
+];
+
+const scenarioSpecialRules = [
+	{
+		scenarioSpecialRuleId: 1,
+		scenarioId: 1,
+		order: 1,
+		ruleText:
+			'Any defender Figure may take an Interest token (representing the body parts) at no action cost by ending their Movement adjacent to the token.'
+	},
+	{
+		scenarioSpecialRuleId: 2,
+		scenarioId: 1,
+		order: 2,
+		ruleText:
+			'In order to fulfill the ritual, the defenders Shaman must have all 4 Interest tokens.  An active Figure may freely give an Interest token it is carrying to the Shaman, or the active Shaman may take it from them, as long as they are adjacent to each other at the end of their Movement'
+	},
+	{
+		scenarioSpecialRuleId: 3,
+		scenarioId: 1,
+		order: 3,
+		ruleText:
+			'Every time the Shaman gets an Interest token, also add 1 Hate to its Figure card.  When the defender Shaman would be KOd, remove 1 Hate from its Figure card instead.  If theere are no more Hate tokens, then the Shaman is finally KOd.'
+	}
+];
+
+const scenarioMissions = [
+	{
+		scenarioMissionId: 1,
+		scenarioId: 1,
+		missionTypeId: 1,
+		scenarioMissionDescription: 'KO enemys Shaman',
+		missionRewardId: 1,
+		missionTribeUpgradeId: 1
+	},
+	{
+		scenarioMissionId: 2,
+		scenarioId: 1,
+		missionTypeId: 2,
+		scenarioMissionDescription: 'Fulfill the ritual.',
+		missionRewardId: 2,
+		missionTribeUpgradeId: 1
+	}
+];
+
+const missionRewards = [
+	{
+		missionRewardId: 1,
+		missionDescription: '2 Hate'
+	},
+	{
+		missionRewardId: 2,
+		missionDescription: '2 Resources'
+	}
+];
+
+const missionTribeUpgrades = [
+	{
+		missionTribeUpgradeId: 1,
+		upgradeId: 1
+	}
+];
+
+const upgrades = [
+	{
+		upgradeId: 1,
+		upgradeCode: 'Grab',
+		upgradeName: 'Grab Upgrade',
+		upgradeDescription: 'You can perform a Grab without spending an Action'
+	}
+];
+
+const missionTypes = [
+	{
+		missionTypeId: 1,
+		missionTypeName: 'Attacker'
+	},
+	{
+		missionTypeId: 2,
+		missionTypeName: 'Defender'
+	},
+	{
+		missionTypeId: 3,
+		missionTypeName: 'Side'
+	}
+];
+
+const scenarios = [
+	{
+		scenarioId: 1,
+		scenarioLocationId: 1,
+		scenarioSlug: 'burn-the-witch',
+		scenarioName: 'Burn the Witch',
+		scenarioDescription:
+			'Word reached us that mysterious body parts, imbued with powerful magic, have been found scattered around a tirualistic rock.  We cannot allow our enemys Shaman to harness that power.  That Witch will become body parts for our own rituals!',
+		prereqId: 1
 	}
 ];
 const newScenario = {
-	id: null,
-	name: '',
-	numberOfTimesChosen: null,
-	chosenMostOftenBy: null
+	scenarioId: null,
+	scenarioLocationId: null,
+	scenarioName: '',
+	scenarioDescription: '',
+	prereqId: null
 };
 
 const tribes = [
@@ -166,5 +278,14 @@ module.exports = {
 	newScenario,
 	tribes,
 	newTribe,
-	players
+	players,
+	scenarioLocations,
+	prereqs,
+	scenarioSpecialSetups,
+	scenarioSpecialRules,
+	scenarioMissions,
+	missionRewards,
+	missionTribeUpgrades,
+	upgrades,
+	missionTypes
 };

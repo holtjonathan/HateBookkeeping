@@ -4,13 +4,15 @@ import tribes from './tribeReducor';
 import scenarios from './scenarioReducor';
 import players from './playerReducer';
 import apiCallsInProgress from './apiStatusReducer';
+import scenarioLocationReducer from './scenarioLocationReducer';
 
 const rootReducer = combineReducers({
 	chronicles,
 	tribes,
 	scenarios,
 	players,
-	apiCallsInProgress
+	apiCallsInProgress,
+	scenarioLocationReducer
 });
 
 export default rootReducer;

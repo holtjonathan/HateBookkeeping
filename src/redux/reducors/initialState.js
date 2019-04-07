@@ -3,5 +3,6 @@ export default {
 	scenarios: [],
 	tribes: [],
 	players: [],
+	scenarioLocations: [],
 	apiCallsInProgress: 0
 };

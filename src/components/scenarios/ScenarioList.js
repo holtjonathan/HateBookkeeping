@@ -7,19 +7,18 @@ const ScenarioList = ({ scenarios }) => (
 		<thead>
 			<tr>
 				<th>Name</th>
-				<th>Times Chosen</th>
-				<th>Most Chosen By</th>
+				<th>Location</th>
 			</tr>
 		</thead>
 		<tbody>
 			{scenarios.map((scenario) => {
+				//return <div key={scenario.scenarioId}>{scenario.scenarioId}</div>;
 				return (
-					<tr key={scenario.id}>
+					<tr key={scenario.scenarioId}>
 						<td>
 							<Link to={'/scenario/' + scenario.slug}>{scenario.name}</Link>
 						</td>
-						<td>{scenario.numberOfTimesChosen}</td>
-						<td>{scenario.chosenMostOftenBy}</td>
+						<td>{scenario.locationName}</td>
 					</tr>
 				);
 			})}

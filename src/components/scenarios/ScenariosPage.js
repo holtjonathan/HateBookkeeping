@@ -10,7 +10,6 @@ class ScenariosPage extends React.Component {
 	componentDidMount() {
 		//const { scenarios, scenarioLocations, actions } = this.props;
 		const { scenarios, actions } = this.props;
-
 		if (scenarios.length === 0) {
 			actions.loadScenarios().catch((error) => {
 				alert('Loading scenarios failed' + error);
@@ -66,6 +65,7 @@ function mapDispatchToProps(dispatch) {
 	return {
 		actions: {
 			loadScenarios: bindActionCreators(scenarioActions.loadScenarios, dispatch),
+			loadSpecialRules: bindActionCreators(scenarioActions.loadSpecialRules, dispatch),
 			loadScenarioLocations: bindActionCreators(scenarioLocationActions.loadScenarioLocations, dispatch)
 		}
 	};

@@ -10,6 +10,7 @@ import ScenariosPage from './scenarios/ScenariosPage';
 import ManageChroniclePage from './chronicles/ManageChroniclePage'; //eslint-disable-line import/no-named-as-default
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import ViewScenarioPage from './scenarios/ViewScenarioPage'; //eslint-disable-line import/no-named-as-default
 
 function App() {
 	return (
@@ -23,6 +24,8 @@ function App() {
 				<Route path="/chronicle" component={ManageChroniclePage} />
 				<Route path="/tribes" component={TribesPage} />
 				<Route path="/scenarios" component={ScenariosPage} />
+				<Route path="/scenario/:slug" component={ViewScenarioPage} />
+				<Route path="/scenario" component={ViewScenarioPage} />
 				<Route component={PageNotFound} />
 			</Switch>
 			<ToastContainer autoClose={3000} hideProgressBar />

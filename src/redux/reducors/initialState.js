@@ -4,5 +4,8 @@ export default {
 	tribes: [],
 	players: [],
 	scenarioLocations: [],
-	apiCallsInProgress: 0
+	apiCallsInProgress: 0,
+	scenario: {
+		specialRules: []
+	}
 };

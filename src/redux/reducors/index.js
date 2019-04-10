@@ -5,6 +5,7 @@ import scenarios from './scenarioReducor';
 import players from './playerReducer';
 import apiCallsInProgress from './apiStatusReducer';
 import scenarioLocationReducer from './scenarioLocationReducer';
+import scenarioDetails from './scenarioDetailReducer';
 
 const rootReducer = combineReducers({
 	chronicles,
@@ -12,7 +13,11 @@ const rootReducer = combineReducers({
 	scenarios,
 	players,
 	apiCallsInProgress,
-	scenarioLocationReducer
+	scenarioLocationReducer,
+	scenarioDetails,
+	scenario: {
+		scenarioDetails: 'detao'
+	}
 });
 
 export default rootReducer;

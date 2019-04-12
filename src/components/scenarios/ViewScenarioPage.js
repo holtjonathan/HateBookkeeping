@@ -12,57 +12,15 @@ export function ViewScenarioPage({ actions, ...props }) {
 
 	useEffect(
 		() => {
-			// if (scenarios.length === 0) {
-			// 	actions.loadScenarios().catch((error) => {
-			// 		alert('Loading scenarios failed' + error);
-			// 	});
-			// } else {
-			// 	setScenario({ ...props.scenario });
-			// }
-
 			actions.loadSpecialRules(scenario.scenarioId).catch((error) => {
 				alert('Loading special rules failed' + error);
 			});
-			// if (isEmpty(props.specialRules) || props.specialRules.length === 0) {
-			// 	actions.loadSpecialRules(scenario.scenarioId).catch((error) => {
-			// 		alert('Loading special rules failed' + error);
-			// 	});
-			// } else {
-			// 	//setSpecialRules({ ...props.specialRules });
-			// }
+			actions.loadSpecialSetups(scenario.scenarioId).catch((error) => {
+				alert('Loading special setups failed' + error);
+			});
 		},
 		[ props.scenario ]
 	);
-
-	// // Speed up calls to hasOwnProperty
-	// var hasOwnProperty = Object.prototype.hasOwnProperty;
-
-	// function isEmpty(obj) {
-	// 	// null and undefined are "empty"
-	// 	if (obj == null) return true;
-
-	// 	// Assume if it has a length property with a non-zero value
-	// 	// that that property is correct.
-	// 	if (obj.length > 0) return false;
-	// 	if (obj.length === 0) return true;
-
-	// 	// If it isn't an object at this point
-	// 	// it is empty, but it can't be anything *but* empty
-	// 	// Is it empty?  Depends on your application.
-	// 	if (typeof obj !== 'object') return true;
-
-	// 	// Otherwise, does it have any properties of its own?
-	// 	// Note that this doesn't handle
-	// 	// toString and valueOf enumeration bugs in IE < 9
-	// 	for (var key in obj) {
-	// 		if (hasOwnProperty.call(obj, key)) return false;
-	// 	}
-
-	// 	return true;
-	// }
-
-	//this array will list out the objects that useEffect will watch...when this array updates then this component will re-render
-	//if this array is blank then this array will only render once when the component mounts (just like componentDidMount())
 
 	return (
 		<div>
@@ -80,36 +38,25 @@ export function ViewScenarioPage({ actions, ...props }) {
 					</ul>
 				);
 			})}
-			{/* <ul>
-            {scenario.specialrules.map((chronicle) => {
+
+			<h2>Special Setups:</h2>
+			{props.specialSetups.map((specialSetup) => {
+				// return <div key={specialRule.specialRuleId}> {specialRule.ruleText} </div>;
 				return (
-					<tr key={chronicle.id}>
-						<td>
-							<Link to={'/chronicle/' + chronicle.slug}>{chronicle.name}</Link>
-						</td>
-						<td>{chronicle.currentRound}</td>
-						<td>{chronicle.currentLeader}</td>
-						<td>{chronicle.startDate}</td>
-						<td>
-							<button className="btn btn-outline-danger" onClick={() => onDeleteClick(chronicle)}>
-								Delete
-							</button>
-						</td>
-					</tr>
+					<ul key={specialSetup.specialSetupId}>
+						<li>{specialSetup.setupText}</li>
+					</ul>
 				);
 			})}
-            </ul> */}
 		</div>
 	);
 }
 
 ViewScenarioPage.propTypes = {
-	scenarios: PropTypes.array,
-	loadScenarios: PropTypes.func,
-	scenario: PropTypes.object,
+	scenario: PropTypes.object.isRequired,
 	specialRulesCollection: PropTypes.array,
-	specialRules: PropTypes.array,
-	loadSpecialRules: PropTypes.func,
+	specialRules: PropTypes.array.isRequired,
+	specialSetups: PropTypes.array.isRequired,
 	actions: PropTypes.object.isRequired
 };
 
@@ -125,6 +72,11 @@ function mapStateToProps(state, ownProps) {
 		specialRules: state.scenarioDetails.specialRules.map((specialRule) => {
 			return {
 				...specialRule
+			};
+		}),
+		specialSetups: state.scenarioDetails.specialSetups.map((specialSetup) => {
+			return {
+				...specialSetup
 			};
 		})
 
@@ -148,7 +100,8 @@ export function getScenarioBySlug(scenarios, slug) {
 function mapDispatchToProps(dispatch) {
 	return {
 		actions: {
-			loadSpecialRules: bindActionCreators(scenarioDetailActions.loadSpecialRules, dispatch)
+			loadSpecialRules: bindActionCreators(scenarioDetailActions.loadSpecialRules, dispatch),
+			loadSpecialSetups: bindActionCreators(scenarioDetailActions.loadSpecialSetups, dispatch)
 		}
 	};
 }

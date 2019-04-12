@@ -10,6 +10,10 @@ export function loadSpecialRulesSuccess(specialRules) {
 	return { type: types.LOAD_SCENARIO_SPECIAL_RULES_SUCCESS, specialRules };
 }
 
+export function loadSpecialSetupsSuccess(specialSetups) {
+	return { type: types.LOAD_SCENARIO_SPECIAL_SETUPS_SUCCESS, specialSetups };
+}
+
 export function loadSpecialRules(scenarioId) {
 	return function(dispatch) {
 		dispatch(beginApiCall());
@@ -17,6 +21,21 @@ export function loadSpecialRules(scenarioId) {
 			.getScenarioSpecialRules(scenarioId)
 			.then((specialRules) => {
 				dispatch(loadSpecialRulesSuccess(specialRules));
+			})
+			.catch((error) => {
+				dispatch(apiCallError(error));
+				throw error;
+			});
+	};
+}
+
+export function loadSpecialSetups(scenarioId) {
+	return function(dispatch) {
+		dispatch(beginApiCall());
+		return scenarioApi
+			.getScenarioSpecialSetups(scenarioId)
+			.then((specialSetups) => {
+				dispatch(loadSpecialSetupsSuccess(specialSetups));
 			})
 			.catch((error) => {
 				dispatch(apiCallError(error));

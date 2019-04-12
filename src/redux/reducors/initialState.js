@@ -6,6 +6,7 @@ export default {
 	scenarioLocations: [],
 	apiCallsInProgress: 0,
 	scenario: {
-		specialRules: []
+		specialRules: [],
+		specialSetups: []
 	}
 };

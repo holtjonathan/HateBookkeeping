@@ -9,3 +9,7 @@ export function getScenarios() {
 export function getScenarioSpecialRules(scenarioId) {
 	return fetch(baseUrl + '/specialRule/' + scenarioId).then(handleResponse).catch(handleError);
 }
+
+export function getScenarioSpecialSetups(scenarioId) {
+	return fetch(baseUrl + '/specialSetup/' + scenarioId).then(handleResponse).catch(handleError);
+}

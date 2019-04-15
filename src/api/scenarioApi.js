@@ -13,3 +13,11 @@ export function getScenarioSpecialRules(scenarioId) {
 export function getScenarioSpecialSetups(scenarioId) {
 	return fetch(baseUrl + '/specialSetup/' + scenarioId).then(handleResponse).catch(handleError);
 }
+
+export function getScenarioSpecialMoveActions(scenarioId) {
+	return fetch(baseUrl + '/specialmoveaction/' + scenarioId).then(handleResponse).catch(handleError);
+}
+
+export function getScenarioMissions(scenarioId) {
+	return fetch(baseUrl + '/mission/' + scenarioId).then(handleResponse).catch(handleError);
+}

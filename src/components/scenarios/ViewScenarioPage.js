@@ -18,6 +18,12 @@ export function ViewScenarioPage({ actions, ...props }) {
 			actions.loadSpecialSetups(scenario.scenarioId).catch((error) => {
 				alert('Loading special setups failed' + error);
 			});
+			actions.loadSpecialMoveActions(scenario.scenarioId).catch((error) => {
+				alert('Loading special setups failed' + error);
+			});
+			actions.loadMissions(scenario.scenarioId).catch((error) => {
+				alert('Loading special setups failed' + error);
+			});
 		},
 		[ props.scenario ]
 	);
@@ -48,6 +54,30 @@ export function ViewScenarioPage({ actions, ...props }) {
 					</ul>
 				);
 			})}
+
+			<h2>Special Moves and Actions:</h2>
+			{props.specialMoveActions.map((specialMoveAction) => {
+				// return <div key={specialRule.specialRuleId}> {specialRule.ruleText} </div>;
+				return (
+					<ul key={specialMoveAction.specialMoveActionId}>
+						<li>{specialMoveAction.moveText}</li>
+					</ul>
+				);
+			})}
+
+			<h2>Missions:</h2>
+			{props.missions.map((mission) => {
+				// return <div key={specialRule.specialRuleId}> {specialRule.ruleText} </div>;
+				return (
+					<ul key={mission.missionId}>
+						<li>{mission.missionDescription}</li>
+						<li>{mission.missionTypeName}</li>
+						<li>{mission.rewardDescription}</li>
+						<li>{mission.upgradeName}</li>
+						<li>{mission.upgradeDescription}</li>
+					</ul>
+				);
+			})}
 		</div>
 	);
 }
@@ -57,6 +87,7 @@ ViewScenarioPage.propTypes = {
 	specialRulesCollection: PropTypes.array,
 	specialRules: PropTypes.array.isRequired,
 	specialSetups: PropTypes.array.isRequired,
+	specialMoveActions: PropTypes.array,
 	actions: PropTypes.object.isRequired
 };
 
@@ -78,7 +109,21 @@ function mapStateToProps(state, ownProps) {
 			return {
 				...specialSetup
 			};
-		})
+		}),
+		specialMoveActions: state.scenarioDetails.specialMoveActions
+			? state.scenarioDetails.specialMoveActions.map((specialMoveAction) => {
+					return {
+						...specialMoveAction
+					};
+				})
+			: [],
+		missions: state.scenarioDetails.missions
+			? state.scenarioDetails.missions.map((mission) => {
+					return {
+						...mission
+					};
+				})
+			: []
 
 		//state.scenarioDetails ? state.scenarioDetails.specialRules : {}
 	};
@@ -101,7 +146,9 @@ function mapDispatchToProps(dispatch) {
 	return {
 		actions: {
 			loadSpecialRules: bindActionCreators(scenarioDetailActions.loadSpecialRules, dispatch),
-			loadSpecialSetups: bindActionCreators(scenarioDetailActions.loadSpecialSetups, dispatch)
+			loadSpecialSetups: bindActionCreators(scenarioDetailActions.loadSpecialSetups, dispatch),
+			loadSpecialMoveActions: bindActionCreators(scenarioDetailActions.loadSpecialMoveActions, dispatch),
+			loadMissions: bindActionCreators(scenarioDetailActions.loadMissions, dispatch)
 		}
 	};
 }

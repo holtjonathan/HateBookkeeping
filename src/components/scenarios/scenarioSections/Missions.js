@@ -11,20 +11,48 @@ export function SpecialSetups({ actions, ...props }) {
 		});
 	}, []);
 
+	// const popover = (
+	//     <Popover id="popover-basic" title="Popover right">
+	//       And here's some <strong>amazing</strong> content. It's very engaging. right?
+	//     </Popover>
+	//   );
+
+	//   const Example = () => (
+	//     <OverlayTrigger trigger="click" placement="right" overlay={popover}>
+	//       <Button variant="success">Click me to see</Button>
+	//     </OverlayTrigger>
+	//   );
+
 	return (
 		<div>
 			<h2>Missions:</h2>
-			{props.missions.map((mission) => {
-				return (
-					<ul className="list-group" key={mission.missionId}>
-						<li className="list-group-item">{mission.missionDescription}</li>
-						<li className="list-group-item">{mission.missionTypeName}</li>
-						<li className="list-group-item">{mission.rewardDescription}</li>
-						<li className="list-group-item">{mission.upgradeName}</li>
-						<li className="list-group-item">{mission.upgradeDescription}</li>
-					</ul>
-				);
-			})}
+			<div className="container">
+				<div className="card-deck">
+					{props.missions.map((mission) => {
+						return (
+							<div className="card" key={mission.missionId}>
+								<div className="card-body">
+									<h5 className="card-title">{mission.missionTypeName}</h5>
+									<p className="card-text">{mission.missionDescription}</p>
+									<p className="card-text">{mission.rewardDescription}</p>
+									<p
+										className="card-text"
+										data-toggle="popover"
+										title={mission.upgradeName}
+										data-content="And here's some amazing content. It's very engaging. Right?"
+									>
+										{mission.upgradeName} <br />
+										<small className="text-muted">{mission.upgradeDescription}</small>
+									</p>
+
+									{/* <p className="card-text">
+									</p> */}
+								</div>
+							</div>
+						);
+					})}
+				</div>
+			</div>
 		</div>
 	);
 }

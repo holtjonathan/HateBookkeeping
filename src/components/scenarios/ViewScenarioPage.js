@@ -1,94 +1,39 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
-import * as scenarioDetailActions from '../../redux/actions/scenarioDetailActions';
 import { newScenario } from '../../../tools/mockData';
-import { bindActionCreators } from 'redux';
+import SpecialRules from '../scenarios/scenarioSections/SpecialRules'; //eslint-disable-line import/no-named-as-default
+import SpecialSetups from '../scenarios/scenarioSections/SpecialSetups'; //eslint-disable-line import/no-named-as-default
+import SpecialMovesActions from '../scenarios/scenarioSections/SpecialMovesActions'; //eslint-disable-line import/no-named-as-default
+import Missions from '../scenarios/scenarioSections/Missions'; //eslint-disable-line import/no-named-as-default
 
-//...props is assigning any props that haven't been manually destructured to 'props'
-export function ViewScenarioPage({ actions, ...props }) {
+export function ViewScenarioPage({ ...props }) {
 	const [ scenario ] = useState({ ...props.scenario });
-	//const [ specialRules, setSpecialRules ] = useState({ ...props.specialRules });
-
-	useEffect(
-		() => {
-			actions.loadSpecialRules(scenario.scenarioId).catch((error) => {
-				alert('Loading special rules failed' + error);
-			});
-			actions.loadSpecialSetups(scenario.scenarioId).catch((error) => {
-				alert('Loading special setups failed' + error);
-			});
-			actions.loadSpecialMoveActions(scenario.scenarioId).catch((error) => {
-				alert('Loading special setups failed' + error);
-			});
-			actions.loadMissions(scenario.scenarioId).catch((error) => {
-				alert('Loading special setups failed' + error);
-			});
-		},
-		[ props.scenario ]
-	);
 
 	return (
 		<div>
 			<h1>{scenario.name}</h1>
 			<p>{scenario.description}</p>
-			{/* <div>{specialRules}</div> */}
-			{/* {JSON.stringify(props.specialRules)} */}
 
-			<h2>Special Rules:</h2>
-			{props.specialRules.map((specialRule) => {
-				// return <div key={specialRule.specialRuleId}> {specialRule.ruleText} </div>;
-				return (
-					<ul key={specialRule.specialRuleId}>
-						<li>{specialRule.ruleText}</li>
-					</ul>
-				);
-			})}
+			<div className="container">
+				<div className="row">
+					<div className="col-sm">
+						<SpecialRules scenarioId={scenario.scenarioId} />
+					</div>
+					<div className="col-sm">
+						<SpecialSetups scenarioId={scenario.scenarioId} />
+					</div>
+				</div>
+			</div>
 
-			<h2>Special Setups:</h2>
-			{props.specialSetups.map((specialSetup) => {
-				// return <div key={specialRule.specialRuleId}> {specialRule.ruleText} </div>;
-				return (
-					<ul key={specialSetup.specialSetupId}>
-						<li>{specialSetup.setupText}</li>
-					</ul>
-				);
-			})}
-
-			<h2>Special Moves and Actions:</h2>
-			{props.specialMoveActions.map((specialMoveAction) => {
-				// return <div key={specialRule.specialRuleId}> {specialRule.ruleText} </div>;
-				return (
-					<ul key={specialMoveAction.specialMoveActionId}>
-						<li>{specialMoveAction.moveText}</li>
-					</ul>
-				);
-			})}
-
-			<h2>Missions:</h2>
-			{props.missions.map((mission) => {
-				// return <div key={specialRule.specialRuleId}> {specialRule.ruleText} </div>;
-				return (
-					<ul key={mission.missionId}>
-						<li>{mission.missionDescription}</li>
-						<li>{mission.missionTypeName}</li>
-						<li>{mission.rewardDescription}</li>
-						<li>{mission.upgradeName}</li>
-						<li>{mission.upgradeDescription}</li>
-					</ul>
-				);
-			})}
+			<SpecialMovesActions scenarioId={scenario.scenarioId} />
+			<Missions scenarioId={scenario.scenarioId} />
 		</div>
 	);
 }
 
 ViewScenarioPage.propTypes = {
-	scenario: PropTypes.object.isRequired,
-	specialRulesCollection: PropTypes.array,
-	specialRules: PropTypes.array.isRequired,
-	specialSetups: PropTypes.array.isRequired,
-	specialMoveActions: PropTypes.array,
-	actions: PropTypes.object.isRequired
+	scenario: PropTypes.object.isRequired
 };
 
 //what part of state do we expose to our componenet?
@@ -97,35 +42,7 @@ function mapStateToProps(state, ownProps) {
 	const scenario = slug && state.scenarios.length > 0 ? getScenarioBySlug(state.scenarios, slug) : newScenario;
 
 	return {
-		//chronicle: newChronicle, //this ALWAYS passes in an empty chronicle
-		scenario,
-		//scenarios: state.scenarios,
-		specialRules: state.scenarioDetails.specialRules.map((specialRule) => {
-			return {
-				...specialRule
-			};
-		}),
-		specialSetups: state.scenarioDetails.specialSetups.map((specialSetup) => {
-			return {
-				...specialSetup
-			};
-		}),
-		specialMoveActions: state.scenarioDetails.specialMoveActions
-			? state.scenarioDetails.specialMoveActions.map((specialMoveAction) => {
-					return {
-						...specialMoveAction
-					};
-				})
-			: [],
-		missions: state.scenarioDetails.missions
-			? state.scenarioDetails.missions.map((mission) => {
-					return {
-						...mission
-					};
-				})
-			: []
-
-		//state.scenarioDetails ? state.scenarioDetails.specialRules : {}
+		scenario
 	};
 }
 
@@ -135,22 +52,11 @@ export function getScenarioBySlug(scenarios, slug) {
 }
 
 //what actions do we expose to our component?
-//objectVersion (connect wraps DISPATCH around properties within an object if it is provided like this):
-// const mapDispatchToProps = {
-// 	loadScenarios: scenarioActions.loadScenarios(),
-// 	loadSpecialRules: scenarioActions.loadSpecialRules()
-// };
+// function mapDispatchToProps(dispatch) {
+// 	return {
+// 		actions: {
+// 		}
+// 	};
+// }
 
-//what actions do we expose to our component?
-function mapDispatchToProps(dispatch) {
-	return {
-		actions: {
-			loadSpecialRules: bindActionCreators(scenarioDetailActions.loadSpecialRules, dispatch),
-			loadSpecialSetups: bindActionCreators(scenarioDetailActions.loadSpecialSetups, dispatch),
-			loadSpecialMoveActions: bindActionCreators(scenarioDetailActions.loadSpecialMoveActions, dispatch),
-			loadMissions: bindActionCreators(scenarioDetailActions.loadMissions, dispatch)
-		}
-	};
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(ViewScenarioPage);
+export default connect(mapStateToProps)(ViewScenarioPage);

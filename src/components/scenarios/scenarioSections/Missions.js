@@ -3,6 +3,9 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 import * as scenarioDetailActions from '../../../redux/actions/scenarioDetailActions';
 import { bindActionCreators } from 'redux';
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
+import Button from 'react-bootstrap/Button';
 
 export function SpecialSetups({ actions, ...props }) {
 	useEffect(() => {
@@ -11,17 +14,21 @@ export function SpecialSetups({ actions, ...props }) {
 		});
 	}, []);
 
-	// const popover = (
-	//     <Popover id="popover-basic" title="Popover right">
-	//       And here's some <strong>amazing</strong> content. It's very engaging. right?
-	//     </Popover>
-	//   );
+	function popover(mission) {
+		return (
+			<Popover id="popover-basic" title={mission.upgradeName}>
+				{mission.upgradeDescription}
+			</Popover>
+		);
+	}
 
-	//   const Example = () => (
-	//     <OverlayTrigger trigger="click" placement="right" overlay={popover}>
-	//       <Button variant="success">Click me to see</Button>
-	//     </OverlayTrigger>
-	//   );
+	function Define(mission) {
+		return (
+			<OverlayTrigger trigger="hover" placement="right" overlay={popover(mission)}>
+				<Button variant="success">{mission.upgradeName}</Button>
+			</OverlayTrigger>
+		);
+	}
 
 	return (
 		<div>
@@ -30,23 +37,14 @@ export function SpecialSetups({ actions, ...props }) {
 				<div className="card-deck">
 					{props.missions.map((mission) => {
 						return (
-							<div className="card" key={mission.missionId}>
+							// <div className="card {{mission.missionTypeName}}" key={mission.missionId}>
+							<div className={'card ' + mission.missionTypeName} key={mission.missionId}>
 								<div className="card-body">
 									<h5 className="card-title">{mission.missionTypeName}</h5>
 									<p className="card-text">{mission.missionDescription}</p>
 									<p className="card-text">{mission.rewardDescription}</p>
-									<p
-										className="card-text"
-										data-toggle="popover"
-										title={mission.upgradeName}
-										data-content="And here's some amazing content. It's very engaging. Right?"
-									>
-										{mission.upgradeName} <br />
-										<small className="text-muted">{mission.upgradeDescription}</small>
-									</p>
 
-									{/* <p className="card-text">
-									</p> */}
+									<Define {...mission} />
 								</div>
 							</div>
 						);
